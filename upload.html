@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8; /* Very light grey-blue background */
+            color: #333; /* Dark grey text for readability */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px; /* Space for fixed header */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #ffffff; /* Pure white header */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for subtle depth */
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db; /* Soft light blue color */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333; /* Dark grey text */
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #3498db; /* Light blue for hover effect */
+            color: white; /* White text on hover */
+        }
+
+        /* Upload Section Styling */
+        .upload-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #ffffff; /* White background */
+            border-radius: 15px;
+            margin-top: 120px; /* To avoid overlap with fixed header */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #333; /* Dark grey text */
+            width: 90%;
+            max-width: 800px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .upload-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #3498db; /* Light blue heading color */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-section form {
+            display: inline-block;
+            text-align: left;
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ffffff; /* White footer */
+            color: #333; /* Dark grey text */
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for footer */
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .upload-section h2 {
+                font-size: 28px;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .brand {
+                font-size: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">Diabetic Retinopathy Grading</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="upload-section">
+        <h2>Upload an Image</h2>
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+            <input type="file" name="file" required />
+            <button type="submit">Upload</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2024 Diabetic Retinopathy Grading System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
